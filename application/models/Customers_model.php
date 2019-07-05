@@ -125,4 +125,17 @@ class Customers_model extends CI_Model {
 		return $countries;
 	}
 
+
+
+	public function get_by_id($id)
+	{
+		$this->db->from($this->table);
+		$this->db->join('tb_jabatan j','j.id_jabatan=k.id_jabatan','left');
+		$this->db->join('tb_status s','s.id_status=k.id_status','left');
+		$this->db->where('k.id',$id);
+		$query = $this->db->get();
+
+		return $query->row();
+	}
+
 }
